@@ -12,25 +12,6 @@ following a spec-driven workflow. Follow the guide `ISEP_Deloitte_practice_class
 | [Node.js](https://nodejs.org/) (includes npm) | 24 LTS or newer | Runs the Next.js frontend and NestJS API |
 | [Claude Code CLI](https://code.claude.com/docs/en/setup) | latest | The AI coding agent, run in the VS Code terminal |
 
-You also need a **GitHub account**. Docker is **not** required. Full Visual Studio is not required.
-The Claude Code VS Code extension is optional.
-
-### Install Claude Code
-
-Windows PowerShell:
-
-```powershell
-irm https://claude.ai/install.ps1 | iex
-```
-
-macOS / Linux:
-
-```bash
-curl -fsSL https://claude.ai/install.sh | bash
-```
-
-Review any installer script according to your organization's policy, then open a new terminal.
-
 ### Check everything is installed
 
 ```powershell
@@ -56,16 +37,9 @@ See the [official skills repository](https://github.com/mattpocock/skills) for d
 
 ## Connect Claude Code to the workshop API
 
-Deloitte provides the workshop API URL and key. You do not need a personal API key, billing setup or Claude subscription.
+Deloitte provides the workshop API URL and key
 
 From the repository root:
-
-```powershell
-New-Item -ItemType Directory -Force .claude | Out-Null
-code .claude\settings.local.json
-```
-
-
 
 In `.claude/settings.local.json`, set both `ANTHROPIC_FOUNDRY_BASE_URL` and
 `ANTHROPIC_FOUNDRY_API_KEY` under `env`, using the URL and key provided by Deloitte. If you need
