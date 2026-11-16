@@ -274,48 +274,43 @@
           <span class="summary-description">Install the tools and connect Claude Code to the workshop API.</span>
         </summary>
         <div class="content">
-          <p>The commands below use <strong>Windows PowerShell</strong>.</p>
           <h3>Install the essentials</h3>
           <ul>
-            <li><a href="https://code.visualstudio.com/" target="_blank" rel="noopener noreferrer">VS Code</a>
-              and <a href="https://git-scm.com/downloads" target="_blank" rel="noopener noreferrer">Git</a>.
-              Full Visual Studio is not needed.</li>
-            <li><a href="https://nodejs.org/" target="_blank" rel="noopener noreferrer">Node.js LTS, version 24 or newer</a>,
-              including npm.</li>
+            <li><a href="https://code.visualstudio.com/" target="_blank" rel="noopener noreferrer">VS Code</a> (latest),
+              for the editor and integrated terminal.</li>
+            <li><a href="https://git-scm.com/downloads" target="_blank" rel="noopener noreferrer">Git</a> (latest),
+              for version control and the team repository.</li>
+            <li><a href="https://nodejs.org/" target="_blank" rel="noopener noreferrer">Node.js</a> (includes npm),
+              version 24 LTS or newer.</li>
             <li><a href="https://code.claude.com/docs/en/setup" target="_blank" rel="noopener noreferrer">Claude Code CLI</a>
-              in the integrated terminal. Its VS Code extension is optional.</li>
+              (latest), the AI coding agent used in the VS Code terminal.</li>
           </ul>
-          <p class="command-label">Official Claude Code installer / Windows PowerShell</p>
-          <pre tabindex="0" aria-label="Claude Code installation command"><code>irm https://claude.ai/install.ps1 | iex</code></pre>
-          <p>Review the installer according to your organization's policy. Open a new terminal afterwards.</p>
           <p class="command-label">Confirm that the tools are available</p>
           <pre tabindex="0" aria-label="Tool version checks"><code>node --version
 npm --version
 git --version
 claude --version</code></pre>
+          <p>All four commands must print a version. Node must be 24 or newer.</p>
 
           <h3>Install Matt Pocock's skills</h3>
           <p>Install the official <a href="https://github.com/mattpocock/skills" target="_blank" rel="noopener noreferrer">Matt Pocock skills</a>
             Claude Code plugin:</p>
           <pre tabindex="0" aria-label="Install Matt Pocock skills"><code>claude plugin install mattpocock-skills@claude-plugins-official</code></pre>
-          <p>The plugin updates itself. After connecting to the workshop API below, run
-            <code>/setup-matt-pocock-skills</code> once from the repository root to configure the skills for this repo.</p>
+          <p>The plugin updates itself. See the <a href="https://github.com/mattpocock/skills" target="_blank" rel="noopener noreferrer">official skills repository</a>
+            for details.</p>
 
           <h3>Connect Claude Code to the workshop API</h3>
-          <p><strong>Deloitte will provide the API URL and key for this workshop.</strong> Use only the values assigned
+          <p><strong>Deloitte provides the workshop API URL and key.</strong> Use only the values assigned
             by the facilitators; you do not need a personal API key, billing setup or Claude subscription.</p>
-          <p>From the repository root, open your local Claude settings file:</p>
-          <pre tabindex="0" aria-label="Open local Claude Code settings"><code>New-Item -ItemType Directory -Force .claude | Out-Null
-code .claude\settings.local.json</code></pre>
-          <p>In <code>.claude/settings.local.json</code>, set both <code>ANTHROPIC_FOUNDRY_BASE_URL</code>
-            and <code>ANTHROPIC_FOUNDRY_API_KEY</code> under <code>env</code>, using the URL and key provided
-            by Deloitte. If the file needs an <code>env</code> object, use this structure and replace the empty values:</p>
+          <p>From the repository root, in <code>.claude/settings.local.json</code>, set both
+            <code>ANTHROPIC_FOUNDRY_BASE_URL</code> and <code>ANTHROPIC_FOUNDRY_API_KEY</code> under <code>env</code>,
+            using the URL and key provided by Deloitte. If you need to create the file, use this structure
+            and replace the empty values:</p>
           <pre tabindex="0" aria-label="Store workshop URL and API key locally"><code>{
   "env": {
     "ANTHROPIC_FOUNDRY_BASE_URL": "",
     "ANTHROPIC_FOUNDRY_API_KEY": "",
     "ANTHROPIC_MODEL": "claude-sonnet-5-5",
-    "ANTHROPIC_DEFAULT_OPUS_MODEL": "claude-opus-5-5",
     "ANTHROPIC_DEFAULT_SONNET_MODEL": "claude-sonnet-5-5",
     "ANTHROPIC_DEFAULT_HAIKU_MODEL": "claude-haiku-5-5",
     "DISABLE_NON_ESSENTIAL_MODEL_CALLS": "1",
@@ -325,13 +320,13 @@ code .claude\settings.local.json</code></pre>
 }</code></pre>
           <p>If <code>env</code> already exists, add or update the entries there. <strong>Never put the URL or key
             in <code>.claude/settings.json</code></strong>; keep both only in <code>.claude/settings.local.json</code>,
-            which is excluded from Git. Then start Claude Code from the repository root and run <code>/status</code>
-            to confirm it is connected.</p>
+            which is excluded from Git. Start Claude Code from the repository root:</p>
           <pre tabindex="0" aria-label="Start Claude Code"><code>claude</code></pre>
-          <p>With Claude Code running, enter <code>/setup-matt-pocock-skills</code> once to configure the skills for this repo.</p>
+          <p>Run <code>/status</code> to confirm it is connected, then run
+            <code>/setup-matt-pocock-skills</code> once to configure the skills for this repo.</p>
           <div class="callout warning"><p><strong>Keep the URL and key private.</strong>
-            Put the URL and key only in <code>.claude\settings.local.json</code>, which is excluded from Git.
-            A Claude hook blocks commits with filled values for either variable in staged files.
+            Put the URL and key only in <code>.claude/settings.local.json</code>, which is excluded from Git.
+            A Claude hook blocks commits with non-placeholder values for either variable in staged files.
             Never commit or share either value or put either value in application code.
             Report a leaked key immediately to the Deloitte facilitators.
             If the key is rejected or its usage limit is reached, contact them; do not use a personal key.</p></div>
@@ -339,7 +334,7 @@ code .claude\settings.local.json</code></pre>
           <ul class="checklist">
             <li><label><span>The required tools are installed and their version commands succeed.</span></label></li>
             <li><label><span>Claude Code is using the API key provided by Deloitte, and I understand the workshop usage limits.</span></label></li>
-            <li><label><span>The Foundry URL and API key are only in <code>.claude\settings.local.json</code>, which is excluded from Git.</span></label></li>
+            <li><label><span>The Foundry URL and API key are only in <code>.claude/settings.local.json</code>, which is excluded from Git.</span></label></li>
             <li><label><span><code>/status</code> in Claude Code shows it is connected and a first prompt gets an answer.</span></label></li>
           </ul>
         </div>

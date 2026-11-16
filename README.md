@@ -51,7 +51,6 @@ to create the file, use this structure and replace the empty values:
     "ANTHROPIC_FOUNDRY_BASE_URL": "",
     "ANTHROPIC_FOUNDRY_API_KEY": "",
     "ANTHROPIC_MODEL": "claude-sonnet-5-5",
-    "ANTHROPIC_DEFAULT_OPUS_MODEL": "claude-opus-5-5",
     "ANTHROPIC_DEFAULT_SONNET_MODEL": "claude-sonnet-5-5",
     "ANTHROPIC_DEFAULT_HAIKU_MODEL": "claude-haiku-5-5",
     "DISABLE_NON_ESSENTIAL_MODEL_CALLS": "1",
