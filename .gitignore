@@ -1,0 +1,14 @@
+node_modules/
+.next/
+dist/
+coverage/
+*.tsbuildinfo
+.env
+.env.*
+!.env.example
+data/*
+!data/.gitkeep
+!data/index.md
+*.log
+.DS_Store
+.claude/settings.local.json

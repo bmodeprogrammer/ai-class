@@ -56,24 +56,39 @@ See the [official skills repository](https://github.com/mattpocock/skills) for d
 
 ## Connect Claude Code to the workshop API
 
-Deloitte provides an API key for the workshop. You do not need a personal API key, billing setup or Claude subscription.
+Deloitte provides the workshop API URL and key. You do not need a personal API key, billing setup or Claude subscription.
 
 From the repository root:
 
 ```powershell
 New-Item -ItemType Directory -Force .claude | Out-Null
-Copy-Item settings.json .claude\settings.local.json
 code .claude\settings.local.json
 ```
 
-(macOS / Linux: `mkdir -p .claude && cp settings.json .claude/settings.local.json`)
+macOS / Linux: `mkdir -p .claude && code .claude/settings.local.json`
 
-In `.claude/settings.local.json`, replace `Key` in `ANTHROPIC_FOUNDRY_API_KEY` with the key you received, then save.
+In `.claude/settings.local.json`, set both `ANTHROPIC_FOUNDRY_BASE_URL` and
+`ANTHROPIC_FOUNDRY_API_KEY` under `env`, using the URL and key provided by Deloitte. If you need
+to create the file, use this structure and replace the empty values:
+
+```json
+{
+  "env": {
+    "ANTHROPIC_FOUNDRY_BASE_URL": "",
+    "ANTHROPIC_FOUNDRY_API_KEY": ""
+  }
+}
+```
+
+If the file already has an `env` object, add or update those entries there. Never put the URL or key
+in `.claude/settings.json`.
+
 Start `claude` from the repository root, run `/status` to confirm it is connected, then run
 `/setup-matt-pocock-skills` once.
 
-> **Never put the key in `settings.json`.** That file is committed and this repository is public.
-> The key belongs only in `.claude/settings.local.json`, which is excluded from Git.
+> **Keep the URL and key only in `.claude/settings.local.json`**, which is excluded from Git.
+> The Claude hook in `.claude/settings.json` blocks Claude Code commits if staged files contain
+> non-placeholder values for either variable. It does not guard commits made outside Claude Code.
 > Do not share the key. Report a leak to the Deloitte facilitators immediately.
 
 ## Repository layout
