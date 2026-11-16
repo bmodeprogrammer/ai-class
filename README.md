@@ -65,7 +65,7 @@ New-Item -ItemType Directory -Force .claude | Out-Null
 code .claude\settings.local.json
 ```
 
-macOS / Linux: `mkdir -p .claude && code .claude/settings.local.json`
+
 
 In `.claude/settings.local.json`, set both `ANTHROPIC_FOUNDRY_BASE_URL` and
 `ANTHROPIC_FOUNDRY_API_KEY` under `env`, using the URL and key provided by Deloitte. If you need
@@ -75,7 +75,14 @@ to create the file, use this structure and replace the empty values:
 {
   "env": {
     "ANTHROPIC_FOUNDRY_BASE_URL": "",
-    "ANTHROPIC_FOUNDRY_API_KEY": ""
+    "ANTHROPIC_FOUNDRY_API_KEY": "",
+    "ANTHROPIC_MODEL": "claude-sonnet-5-5",
+    "ANTHROPIC_DEFAULT_OPUS_MODEL": "claude-opus-5-5",
+    "ANTHROPIC_DEFAULT_SONNET_MODEL": "claude-sonnet-5-5",
+    "ANTHROPIC_DEFAULT_HAIKU_MODEL": "claude-haiku-5-5",
+    "DISABLE_NON_ESSENTIAL_MODEL_CALLS": "1",
+    "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC": "1",
+    "CLAUDE_CODE_USE_FOUNDRY": "1"
   }
 }
 ```
@@ -93,8 +100,8 @@ Start `claude` from the repository root, run `/status` to confirm it is connecte
 
 ## Repository layout
 
-- `apps/web`: frontend (Next.js), created during the workshop.
-- `apps/api`: backend (NestJS), created during the workshop.
+- `apps/frontend`: frontend (Next.js), created during the workshop.
+- `apps/backend`: backend (NestJS), created during the workshop.
 - `docs`: the agreed specification.
 - `data`: the original CSV files for your chosen assignment. Kept out of Git.
 - `CLAUDE.md`: instructions that Claude Code reads automatically.

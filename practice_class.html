@@ -313,7 +313,14 @@ code .claude\settings.local.json</code></pre>
           <pre tabindex="0" aria-label="Store workshop URL and API key locally"><code>{
   "env": {
     "ANTHROPIC_FOUNDRY_BASE_URL": "",
-    "ANTHROPIC_FOUNDRY_API_KEY": ""
+    "ANTHROPIC_FOUNDRY_API_KEY": "",
+    "ANTHROPIC_MODEL": "claude-sonnet-5-5",
+    "ANTHROPIC_DEFAULT_OPUS_MODEL": "claude-opus-5-5",
+    "ANTHROPIC_DEFAULT_SONNET_MODEL": "claude-sonnet-5-5",
+    "ANTHROPIC_DEFAULT_HAIKU_MODEL": "claude-haiku-5-5",
+    "DISABLE_NON_ESSENTIAL_MODEL_CALLS": "1",
+    "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC": "1",
+    "CLAUDE_CODE_USE_FOUNDRY": "1"
   }
 }</code></pre>
           <p>If <code>env</code> already exists, add or update the entries there. <strong>Never put the URL or key
